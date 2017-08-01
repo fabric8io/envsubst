@@ -1,13 +1,18 @@
 #!/bin/bash
 
-FILENAME=$1
+PROCESSED=false
 
-if [ ! $FILENAME ]
+for i do
+  echo "Processing $i ..."
+
+  envsubst < /workdir/$i > /processed/$i
+  PROCESSED=true
+done
+
+ls /processed/
+
+if [ ! $PROCESSED = true ]
 then
-  echo 'No filename argument provided'
+  echo 'No files processed'
   exit -1
 fi
-echo "Processing $FILENAME ..."
-
-envsubst < $FILENAME > $FILENAME-bak
-mv $FILENAME-bak /processed/$FILENAME

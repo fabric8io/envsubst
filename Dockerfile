@@ -11,6 +11,6 @@ RUN chgrp -R 0 /processed \
 
 WORKDIR workdir
 
-ADD envsubst-file.sh .
+ADD envsubst-file.sh /
 
-ENTRYPOINT ["./envsubst-file.sh"]
+ENTRYPOINT ["/envsubst-file.sh"]
